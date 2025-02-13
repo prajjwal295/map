@@ -27,7 +27,6 @@ const HospitalsList = () => {
             `https://nominatim.openstreetmap.org/search?format=json&q=hospital+near+${lat},${lng}`
           );
           const data = await response.json();
-          console.log(data);
           setHospitals(data);
         } catch (error) {
           setError("Failed to fetch hospital data.");
@@ -46,31 +45,35 @@ const HospitalsList = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-100 p-6">
-      <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6 text-center">
-        <h1 className="text-3xl font-bold text-blue-600 mb-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6">
+      <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6 text-center text-gray-900">
+        <h1 className="text-3xl font-extrabold mb-4 animate-fade-in">
           Nearby Hospitals
         </h1>
-        <p className="text-gray-600 mb-6">
-          Click the button below to find hospitals near your location.
+        <p className="text-lg mb-6 animate-fade-in">
+          Find hospitals near your location quickly and easily. Click below to
+          start.
         </p>
 
         <button
           onClick={fetchHospitals}
-          className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 transition-all duration-300 disabled:bg-gray-400"
+          className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300 disabled:bg-gray-400"
           disabled={loading}
         >
           {loading ? "Fetching Hospitals..." : "Find Nearby Hospitals"}
         </button>
 
         {error && <p className="text-red-500 mt-4">{error}</p>}
+      </div>
 
-        {hospitals.length > 0 && (
-          <div className="mt-6 w-full">
-            <h2 className="text-xl font-semibold text-gray-700 mb-2">
-              Hospitals Near You:
-            </h2>
-            <ul className="space-y-4 max-h-64 overflow-y-auto bg-gray-50 p-4 rounded-lg shadow-inner">
+      {/* Hospitals List Section */}
+      {hospitals.length > 0 && (
+        <div className="mt-6 w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            Hospitals Near You:
+          </h2>
+          <div className="bg-gray-50 p-4 rounded-lg shadow-inner max-h-64 overflow-y-auto">
+            <ul className="space-y-4">
               {hospitals.map((hospital, index) => (
                 <li
                   key={index}
@@ -84,14 +87,14 @@ const HospitalsList = () => {
               ))}
             </ul>
           </div>
-        )}
+        </div>
+      )}
 
-        {hospitals.length === 0 && !loading && !error && (
-          <p className="mt-6 text-gray-500">
-            No hospitals found yet. Click the button to search.
-          </p>
-        )}
-      </div>
+      {hospitals.length === 0 && !loading && !error && (
+        <p className="mt-6 ">
+          No hospitals found yet. Click the button to search.
+        </p>
+      )}
     </div>
   );
 };

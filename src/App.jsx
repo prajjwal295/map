@@ -12,7 +12,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        {/* Protected Route for Map */}
         <Route
           path="/map"
           element={<ProtectedRoute element={<HospitalsList />} />}
