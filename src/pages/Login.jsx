@@ -1,0 +1,59 @@
+import { auth, provider, signInWithPopup } from "../config/Firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../store/userSlice";
+import { useNavigate } from "react-router-dom";
+
+const Login = () => {
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      dispatch(setUser(result.user));
+      navigate("/"); // Redirect to home after login
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-6">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8 text-center">
+        <h1 className="text-3xl font-bold text-gray-800 mb-4">Welcome Back!</h1>
+        <p className="text-gray-600 mb-6">
+          Sign in with your Google account to access nearby hospitals and more.
+        </p>
+
+        {user ? (
+          <p className="text-green-600 font-semibold">
+            You are already logged in.
+          </p>
+        ) : (
+          <button
+            onClick={handleLogin}
+            className="flex items-center justify-center w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-all"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+              alt="Google Logo"
+              className="w-6 h-6 mr-2"
+            />
+            Sign in with Google
+          </button>
+        )}
+
+        <p className="mt-4 text-sm text-gray-500">
+          By signing in, you agree to our{" "}
+          <span className="text-blue-500 cursor-pointer">
+            Terms & Conditions
+          </span>
+          .
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
