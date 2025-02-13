@@ -2,6 +2,7 @@ import { auth, provider, signInWithPopup } from "../config/Firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/userSlice";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const Login = () => {
   const user = useSelector((state) => state.user.user);
@@ -35,11 +36,7 @@ const Login = () => {
             onClick={handleLogin}
             className="flex items-center justify-center w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-all"
           >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-              alt="Google Logo"
-              className="w-6 h-6 mr-2"
-            />
+            <img src={logo} alt="Google Logo" className="w-6 h-6 mr-2" />
             Sign in with Google
           </button>
         )}
