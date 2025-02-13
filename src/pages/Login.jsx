@@ -20,10 +20,12 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-6">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8 text-center">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">Welcome Back!</h1>
-        <p className="text-gray-600 mb-6">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 p-6">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8 text-center text-gray-900">
+        <h1 className="text-3xl font-extrabold text-gray-800 mb-6 animate-fade-in">
+          Welcome Back!
+        </h1>
+        <p className="text-lg text-gray-600 mb-6 animate-fade-in">
           Sign in with your Google account to access nearby hospitals and more.
         </p>
 
@@ -34,7 +36,7 @@ const Login = () => {
         ) : (
           <button
             onClick={handleLogin}
-            className="flex items-center justify-center w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-all"
+            className="flex items-center justify-center w-full py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300"
           >
             <img src={logo} alt="Google Logo" className="w-6 h-6 mr-2" />
             Sign in with Google
