@@ -91,7 +91,7 @@ const HospitalsList = () => {
       )}
 
       {hospitals.length === 0 && !loading && !error && (
-        <p className="mt-6 ">
+        <p className="mt-6 m-auto text-center">
           No hospitals found yet. Click the button to search.
         </p>
       )}
